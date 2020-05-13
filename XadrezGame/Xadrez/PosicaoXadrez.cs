@@ -13,10 +13,18 @@ namespace XadrezGame.Xadrez
             this.linha = linha;
         }
 
+
+
+
+        // Converte a posição no  tabuleiro para a posição na matriz
         public Posicao toPosicao()
         {
             return new Posicao(8 - linha, coluna - 'a');
         }
+        //-------------------------------------------
+
+
+
 
         public override string ToString()
         {

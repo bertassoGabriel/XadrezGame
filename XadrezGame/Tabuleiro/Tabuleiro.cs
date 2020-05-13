@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace XadrezGame.Tabuleiro
+﻿namespace XadrezGame.Tabuleiro
 {
     class Tabuleiro
     {
@@ -10,29 +6,35 @@ namespace XadrezGame.Tabuleiro
         public int colunas;
         private Peca[,] pecas;
 
+        // Coloca o tabuleiro
         public Tabuleiro(int linhas, int colunas)
         {
             this.linhas = linhas;
             this.colunas = colunas;
             pecas = new Peca[linhas, colunas];
         }
+        //-------------------------------------------
 
+
+
+
+        // Retorna qual peça está nesta linha e coluna
         public Peca peca(int linha, int coluna)
         {
             return pecas[linha, coluna];
         }
 
+        // Retorna qual peça está nesta posição
         public Peca peca(Posicao pos)
         {
             return pecas[pos.linha, pos.coluna];
         }
+        //-------------------------------------------
 
-        public bool existePeca(Posicao pos)
-        {
-            validarPosicao(pos);
-            return peca(pos) != null;
-        }
 
+
+
+        // Coloca uma peça
         public void colocarPeca(Peca p, Posicao pos)
         {
             if (existePeca(pos))
@@ -43,6 +45,7 @@ namespace XadrezGame.Tabuleiro
             p.posicao = pos;
         }
 
+        // Retira uma peça
         public Peca retirarPeca(Posicao pos)
         {
             if (peca(pos) == null)
@@ -55,15 +58,24 @@ namespace XadrezGame.Tabuleiro
             return aux;
         }
 
-        public bool posicaoValida(Posicao pos)
+        public bool existePeca(Posicao pos)
         {
-            if (pos.linha < 0 || pos.coluna >= linhas || pos.coluna < 0 || pos.coluna >= colunas)
-            {
-                return false;
-            }
-            return true;
+            validarPosicao(pos);
+            return peca(pos) != null;
         }
+        //-------------------------------------------
 
+
+
+
+
+
+
+
+
+
+
+        // Verifica válidade de uma posição
         public void validarPosicao(Posicao pos)
         {
             if (!posicaoValida(pos))
@@ -71,5 +83,15 @@ namespace XadrezGame.Tabuleiro
                 throw new TabuleiroException("Posição inválida!");
             }
         }
+
+        public bool posicaoValida(Posicao pos)
+        {
+            if (pos.linha < 0 || pos.linha >= linhas || pos.coluna < 0 || pos.coluna >= colunas)
+            {
+                return false;
+            }
+            return true;
+        }
+        //-------------------------------------------
     }
 }
