@@ -68,13 +68,6 @@
 
 
 
-
-
-
-
-
-
-
         // Verifica válidade de uma posição
         public void validarPosicao(Posicao pos)
         {
